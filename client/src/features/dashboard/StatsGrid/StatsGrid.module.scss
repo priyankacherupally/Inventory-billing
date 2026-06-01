@@ -1,0 +1,57 @@
+@use '../../../styles/variables.scss' as *;
+
+.row {
+  margin-top: 4px;
+}
+
+.statCard {
+  position: relative;
+  border-radius: $radius-lg !important;
+  color: #fff;
+  overflow: hidden;
+  min-height: 140px;
+  box-shadow: $shadow-md;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  :global(.ant-card-body) {
+    color: #fff;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: $shadow-lg;
+  }
+
+  &.primary {
+    background: $gradient-primary;
+  }
+  &.success {
+    background: $gradient-success;
+  }
+  &.warning {
+    background: $gradient-warning;
+  }
+  &.info {
+    background: $gradient-info;
+  }
+}
+
+.statIcon {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  font-size: 32px;
+  opacity: 0.7;
+}
+
+.statLabel {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.skeletonCard {
+  border-radius: $radius-lg !important;
+  min-height: 140px;
+  box-shadow: $shadow-md;
+}

@@ -1,0 +1,42 @@
+@use '../../../styles/variables.scss' as *;
+
+.panel {
+  border-radius: $radius-lg !important;
+  box-shadow: $shadow-md;
+  height: 100%;
+}
+
+.feed {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+  }
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: $color-success;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
+  flex-shrink: 0;
+}
+
+.dotWarn {
+  background: $color-warning;
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.15);
+}
+
+.dotInfo {
+  background: $color-info;
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.15);
+}

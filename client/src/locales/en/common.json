@@ -1,0 +1,13 @@
+{
+  "app": {
+    "name": "Patternlab Combo"
+  },
+  "auth": {
+    "signIn": "Sign in",
+    "welcomeBack": "Welcome back"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "refresh": "Refresh"
+  }
+}

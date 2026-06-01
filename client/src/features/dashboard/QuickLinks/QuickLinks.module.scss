@@ -1,0 +1,13 @@
+@use '../../../styles/variables.scss' as *;
+
+.panel {
+  border-radius: $radius-lg !important;
+  box-shadow: $shadow-md;
+  height: 100%;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
