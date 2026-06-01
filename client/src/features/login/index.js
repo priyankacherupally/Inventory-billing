@@ -44,7 +44,7 @@ export default function Login() {
           Welcome back
         </Title>
         <Text type="secondary" className={styles.hint}>
-          Sign in with <strong>admin</strong> / <strong>admin@123</strong>
+          Sign in to continue
         </Text>
 
         {errorMsg && (
@@ -70,7 +70,7 @@ export default function Login() {
             <Input
               size="large"
               prefix={<UserOutlined />}
-              placeholder="admin"
+              placeholder="Username"
               autoComplete="username"
             />
           </Form.Item>
@@ -83,7 +83,7 @@ export default function Login() {
             <Input.Password
               size="large"
               prefix={<LockOutlined />}
-              placeholder="admin@123"
+              placeholder="Password"
               autoComplete="current-password"
             />
           </Form.Item>

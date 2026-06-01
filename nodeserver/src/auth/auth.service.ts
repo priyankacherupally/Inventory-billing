@@ -1,33 +1,47 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt';
+import { UsersService } from '../users/users.service';
 import { LoginDto } from './dto/login.dto';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly config: ConfigService) {}
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly jwtService: JwtService,
+  ) {}
 
-  login(dto: LoginDto) {
-    const validUser = this.config.get<string>('STATIC_USERNAME', 'admin');
-    const validPass = this.config.get<string>('STATIC_PASSWORD', 'admin@123');
+  async login(dto: LoginDto) {
+    const user = await this.usersService.findByUsernameWithPassword(
+      dto.username,
+    );
 
-    if (dto.username !== validUser || dto.password !== validPass) {
+    if (!user || !user.isActive) {
       throw new UnauthorizedException('Invalid username or password');
     }
 
-    const user = {
-      id: '1',
-      username: validUser,
-      name: 'Admin',
-      role: 'admin',
-    };
+    const passwordMatches = await bcrypt.compare(dto.password, user.password);
+    if (!passwordMatches) {
+      throw new UnauthorizedException('Invalid username or password');
+    }
 
-    const payload = {
-      sub: user.id,
+    const safeUser = {
+      id: user._id.toString(),
+      name: user.name,
       username: user.username,
-      iat: Date.now(),
+      role: user.role,
     };
-    const token = Buffer.from(JSON.stringify(payload)).toString('base64');
 
-    return { token, user };
+    const token = await this.jwtService.signAsync({
+      sub: safeUser.id,
+      username: safeUser.username,
+      role: safeUser.role,
+    });
+
+    return { token, user: safeUser };
+  }
+
+  async me(userId: string) {
+    return this.usersService.findOne(userId);
   }
 }

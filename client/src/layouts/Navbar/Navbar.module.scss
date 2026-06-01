@@ -40,6 +40,30 @@
   color: transparent;
 }
 
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navLink {
+  padding: 6px 14px;
+  border-radius: $radius-md;
+  font-weight: 600;
+  color: $text-on-light;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    background: rgba(14, 110, 115, 0.08);
+  }
+}
+
+.navLinkActive {
+  background: rgba(14, 110, 115, 0.12);
+  color: $color-primary;
+}
+
 .user {
   display: flex;
   align-items: center;
@@ -50,7 +74,7 @@
   transition: background 0.15s ease;
 
   &:hover {
-    background: rgba(99, 102, 241, 0.08);
+    background: rgba(14, 110, 115, 0.08);
   }
 }
 
